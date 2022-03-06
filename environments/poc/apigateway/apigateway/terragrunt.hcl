@@ -32,7 +32,7 @@ inputs = {
     "$disconnect" = {
       lambda_arn = dependency.ws_disconnect.outputs.lambda_function_invoke_arn
     },
-    "message" = {
+    "onMessage" = {
       lambda_arn = dependency.ws_message.outputs.lambda_function_invoke_arn
     }
   }
@@ -40,14 +40,13 @@ inputs = {
   # Lambda permission
   lambda_permissions = {
     "$connect" = {
-      function_name = "python-demo-websocket-connect"
-//    },
-//    "$disconnect" = {
-//      function_name = "python-demo-websocket-disconnect"
+      function_name = "ws-python-connect"
+    },
+    "$disconnect" = {
+      function_name = "ws-python-disconnect"
+    },
+    "onMessage" = {
+      function_name = "ws-python-message"
     }
   }
-
-//  lambda_permission_function_name = "python-demo-websocket-connect"
-//
-//  lambda_permission_source_arn = "arn:aws:execute-api:ap-southeast-2:204532658794:n66q5d65pl/*/$connect"
 }
