@@ -5,7 +5,7 @@ def lambda_handler(event, context):
     # TODO implement
     print(event)
 
-    if event['requestContext'] is not None:
+    if event is not None and 'requestContext' in event.keys():
         endpoint_url = "https://" + event['requestContext']['domainName'] + '/' + event['requestContext']['stage']
         connectionId = event['requestContext']['connectionId']
         print(endpoint_url)
