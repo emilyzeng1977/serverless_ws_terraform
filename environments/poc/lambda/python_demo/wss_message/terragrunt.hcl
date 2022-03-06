@@ -20,8 +20,8 @@ inputs = {
 
   create_package      = false
   s3_existing_package = {
-    bucket = "tom.niu26"
-    key    = "wss.zip"
+    bucket = "${local.env_vars.locals.lambda_s3_bucket}"
+    key    = "${local.env_vars.locals.lambda_s3_key}"
   }
 
   tags = {
