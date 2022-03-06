@@ -18,5 +18,5 @@ def lambda_handler(event, context):
     }
 
 def _send_to_connection(endpoint_url, connection_id, data):
-    gatewayapi = boto3.client("apigatewaymanagementapi", endpoint_url)
+    gatewayapi = boto3.client("apigatewaymanagementapi", endpoint_url = endpoint_url)
     return gatewayapi.post_to_connection(Data=data.encode('utf-8'), ConnectionId=connection_id)
