@@ -24,6 +24,23 @@ inputs = {
     key    = "${local.env_vars.locals.lambda_s3_key}"
   }
 
+  attach_policy_json = true
+  policy_json        = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "execute-api:Invoke",
+                "execute-api:ManageConnections"
+            ],
+            "Resource": "arn:aws:execute-api:*:*:*"
+        }
+    ]
+}
+EOF
+
   tags = {
     "Managed By" = "Terragrunt"
   }
