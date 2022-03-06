@@ -1,1 +1,1 @@
-# serverless_wss_terraform
+# serverless_ws_terraform

@@ -7,15 +7,15 @@ terraform {
 }
 
 dependency "websocket_connect" {
-  config_path = "../../lambda/python_demo/wss_connect"
+  config_path = "../../lambda/python_demo/ws_connect"
 }
 
 dependency "websocket_disconnect" {
-  config_path = "../../lambda/python_demo/wss_disconnect"
+  config_path = "../../lambda/python_demo/ws_disconnect"
 }
 
 dependency "websocket_message" {
-  config_path = "../../lambda/python_demo/wss_message"
+  config_path = "../../lambda/python_demo/ws_message"
 }
 
 locals {
@@ -27,13 +27,13 @@ inputs = {
   # Routes and integrations
   apigateway_integrations = {
     "$connect" = {
-      lambda_arn = dependency.wss_connect.outputs.lambda_function_invoke_arn
+      lambda_arn = dependency.ws_connect.outputs.lambda_function_invoke_arn
     },
     "$disconnect" = {
-      lambda_arn = dependency.wss_disconnect.outputs.lambda_function_invoke_arn
+      lambda_arn = dependency.ws_disconnect.outputs.lambda_function_invoke_arn
     },
     "message" = {
-      lambda_arn = dependency.wss_message.outputs.lambda_function_invoke_arn
+      lambda_arn = dependency.ws_message.outputs.lambda_function_invoke_arn
     }
   }
 

@@ -13,7 +13,7 @@ locals {
 inputs = {
   function_name = "${local.env_vars.locals.lambda_prefix_name}-disconnect"
   description   = "lambda example of websocket connect"
-  handler       = "wss-disconnect.lambda_handler"
+  handler       = "ws-disconnect.lambda_handler"
   runtime       = "python3.8"
 
   create_role   = true
