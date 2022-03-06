@@ -6,15 +6,15 @@ terraform {
   source = "${get_path_to_repo_root()}//modules/apigateway/apigateway"
 }
 
-dependency "websocket_connect" {
+dependency "ws_connect" {
   config_path = "../../lambda/python_demo/ws_connect"
 }
 
-dependency "websocket_disconnect" {
+dependency "ws_disconnect" {
   config_path = "../../lambda/python_demo/ws_disconnect"
 }
 
-dependency "websocket_message" {
+dependency "ws_message" {
   config_path = "../../lambda/python_demo/ws_message"
 }
 
