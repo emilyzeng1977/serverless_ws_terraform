@@ -13,7 +13,7 @@ locals {
 inputs = {
   function_name = "${local.env_vars.locals.lambda_prefix_name}-message"
   description   = "lambda example of websocket connect"
-  handler       = "ws-message.lambda_handler"
+  handler       = "wss-message.lambda_handler"
   runtime       = "python3.8"
 
   create_role   = true
