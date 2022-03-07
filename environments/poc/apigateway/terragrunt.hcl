@@ -3,19 +3,19 @@ include {
 }
 
 terraform {
-  source = "${get_path_to_repo_root()}//modules/apigateway/apigateway"
+  source = "${get_path_to_repo_root()}//modules/apigateway"
 }
 
 dependency "ws_connect" {
-  config_path = "../../lambda/python_demo/ws_connect"
+  config_path = "../lambda/python_demo/ws_connect"
 }
 
 dependency "ws_disconnect" {
-  config_path = "../../lambda/python_demo/ws_disconnect"
+  config_path = "../lambda/python_demo/ws_disconnect"
 }
 
 dependency "ws_message" {
-  config_path = "../../lambda/python_demo/ws_message"
+  config_path = "../lambda/python_demo/ws_message"
 }
 
 locals {
@@ -49,5 +49,11 @@ inputs = {
     "onMessage" = {
       function_name = "${local.env_vars.locals.lambda_prefix_name}-message"
     }
+  }
+
+  # API Gateway Stage
+  stage_name        = "poc"
+  stage_variables   = {
+    test1 = "abc123"
   }
 }
