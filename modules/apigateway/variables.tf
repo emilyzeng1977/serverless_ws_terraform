@@ -38,10 +38,4 @@ variable "apigateway_stages" {
   default = {}
 }
 
-variable "contain_default_varibles" {
-  description = "API Gateway Lambda permisions"
-  type = bool
-  default = false
-}
-
 

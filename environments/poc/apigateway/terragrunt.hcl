@@ -54,11 +54,13 @@ inputs = {
   # API Gateway Stages
   apigateway_stages = {
     "poc" = {
+      has_default_varibles = true
       stage_variables   = {
         test1 = "abc123"
       }
     },
     "dev" = {
+      has_default_varibles = false
       stage_variables   = {
         test1 = "abc123"
       }
