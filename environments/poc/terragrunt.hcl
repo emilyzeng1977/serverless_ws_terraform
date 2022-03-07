@@ -28,7 +28,7 @@ remote_state {
     encrypt        = false
     region         = local.aws_region
     key            = "${path_relative_to_include()}/terraform.tfstate"
-    bucket         = "tom.niu26"
+    bucket         = "emily.zeng26"
     dynamodb_table = "tfstate-${get_aws_account_id()}"
   }
 }

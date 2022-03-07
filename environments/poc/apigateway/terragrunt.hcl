@@ -51,9 +51,17 @@ inputs = {
     }
   }
 
-  # API Gateway Stage
-  stage_name        = "poc"
-  stage_variables   = {
-    test1 = "abc123"
+  # API Gateway Stages
+  apigateway_stages = {
+    "poc" = {
+      stage_variables   = {
+        test1 = "abc123"
+      }
+    },
+    "dev" = {
+      stage_variables   = {
+        test1 = "abc123"
+      }
+    }
   }
 }
