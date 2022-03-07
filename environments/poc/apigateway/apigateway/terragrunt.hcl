@@ -19,10 +19,11 @@ dependency "ws_message" {
 }
 
 locals {
+  env_vars = read_terragrunt_config(find_in_parent_folders())
 }
 
 inputs = {
-  apigateway_name   = "tom-websocket-gw-demo"
+  apigateway_name   = "tomniu-websocket-gw-demo"
 
   # Routes and integrations
   apigateway_integrations = {
@@ -40,13 +41,13 @@ inputs = {
   # Lambda permission
   lambda_permissions = {
     "$connect" = {
-      function_name = "ws-python-connect"
+      function_name = "${local.env_vars.locals.lambda_prefix_name}-connect"
     },
     "$disconnect" = {
-      function_name = "ws-python-disconnect"
+      function_name = "${local.env_vars.locals.lambda_prefix_name}-disconnect"
     },
     "onMessage" = {
-      function_name = "ws-python-message"
+      function_name = "${local.env_vars.locals.lambda_prefix_name}-message"
     }
   }
 }

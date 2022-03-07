@@ -1,6 +1,7 @@
 locals {
   aws_region = "ap-southeast-2"
   aws_azs    = ["${local.aws_region}a", "${local.aws_region}b", "${local.aws_region}c"]
+  lambda_prefix_name  = "emily-ws-python"
 }
 
 inputs = {
@@ -27,7 +28,7 @@ remote_state {
     encrypt        = false
     region         = local.aws_region
     key            = "${path_relative_to_include()}/terraform.tfstate"
-    bucket         = "S3 name"
+    bucket         = "tom.niu26"
     dynamodb_table = "tfstate-${get_aws_account_id()}"
   }
 }
