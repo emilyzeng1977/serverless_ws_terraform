@@ -24,11 +24,23 @@ variable "apigateway_integrations" {
   default = {}
 }
 
+# --- API Gateway IAM ---
 
 variable "lambda_permissions" {
   description = "API Gateway Lambda permisions"
   type = any
   default = {}
+}
+
+# --- API Gateway Stage ---
+
+variable "stage_name" {
+  description = "Stage name"
+}
+
+variable "stage_variables" {
+  description = "Stage variables"
+  type = map(string)
 }
 
 
