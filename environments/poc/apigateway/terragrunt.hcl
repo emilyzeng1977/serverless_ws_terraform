@@ -6,16 +6,8 @@ terraform {
   source = "${get_path_to_repo_root()}//modules/apigateway"
 }
 
-dependency "ws_connect" {
-  config_path = "../lambda/python_demo/ws_connect"
-}
-
-dependency "ws_disconnect" {
-  config_path = "../lambda/python_demo/ws_disconnect"
-}
-
-dependency "ws_message" {
-  config_path = "../lambda/python_demo/ws_message"
+dependency "websocketui" {
+  config_path = "../lambda/python_demo/websocketui"
 }
 
 locals {
@@ -28,26 +20,20 @@ inputs = {
   # Routes and integrations
   apigateway_integrations = {
     "$connect" = {
-      lambda_arn = dependency.ws_connect.outputs.lambda_function_invoke_arn
+      lambda_arn = dependency.websocketui.outputs.lambda_function_invoke_arn
     },
     "$disconnect" = {
-      lambda_arn = dependency.ws_disconnect.outputs.lambda_function_invoke_arn
+      lambda_arn = dependency.websocketui.outputs.lambda_function_invoke_arn
     },
     "onMessage" = {
-      lambda_arn = dependency.ws_message.outputs.lambda_function_invoke_arn
+      lambda_arn = dependency.websocketui.outputs.lambda_function_invoke_arn
     }
   }
 
   # Lambda permission
   lambda_permissions = {
-    "$connect" = {
-      function_name = "${local.env_vars.locals.lambda_prefix_name}-connect"
-    },
-    "$disconnect" = {
-      function_name = "${local.env_vars.locals.lambda_prefix_name}-disconnect"
-    },
-    "onMessage" = {
-      function_name = "${local.env_vars.locals.lambda_prefix_name}-message"
+    "routeKey" = {
+      function_name = "${local.env_vars.locals.lambda_prefix_name}-websocketui"
     }
   }
 
@@ -55,15 +41,11 @@ inputs = {
   apigateway_stages = {
     "poc" = {
       has_default_varibles = true
-      stage_variables   = {
-        test1 = "abc123"
-      }
+      stage_variables   = {}
     },
     "dev" = {
       has_default_varibles = false
-      stage_variables   = {
-        test1 = "abc123"
-      }
+      stage_variables   = {}
     }
   }
 }
