@@ -15,10 +15,11 @@ def lambda_handler(event, context):
             endpoint_url = "https://" + event['requestContext']['domainName'] + '/' + event['requestContext']['stage']
             connectionId = event['requestContext']['connectionId']
             print("routeKey: {}, endpoint_url: {}, coonectionId: {}".format('onMessage', endpoint_url, connectionId))
-            data = "messageId: {0}, routeKey: {1}, sourceIp: {2}".format(
-                event['requestContext']['messageId'],
+            data = "routeKey: {0}, from: {1}, received: {2}".format(
                 event['requestContext']['routeKey'],
-                event['requestContext']['identity']['sourceIp'])
+                event['requestContext']['identity']['sourceIp'],
+                event['body']
+            )
             _send_to_connection(endpoint_url, connectionId, data)
         else:
             print('$default')

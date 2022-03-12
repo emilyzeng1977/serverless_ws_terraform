@@ -38,4 +38,15 @@ variable "apigateway_stages" {
   default = {}
 }
 
+variable "enable_access_log" {
+  default = false
+}
+
+variable "enable_trace_log" {
+  default = false
+}
+
+variable "trace_log_level" {
+  default = "INFO"
+}
 

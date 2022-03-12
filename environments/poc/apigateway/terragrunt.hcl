@@ -48,4 +48,7 @@ inputs = {
       stage_variables   = {}
     }
   }
+
+  enable_access_log = true
+  enable_trace_log = true
 }

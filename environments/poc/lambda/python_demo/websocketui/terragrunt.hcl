@@ -3,7 +3,7 @@ include "root" {
 }
 
 terraform {
-  source = "tfr:///terraform-aws-modules/lambda/aws//?version=2.34.1"
+  source = "${get_path_to_repo_root()}//modules/lambda"
 }
 
 locals {
@@ -24,8 +24,12 @@ inputs = {
     key    = "${local.env_vars.locals.lambda_s3_key}"
   }
 
-  attach_policy_json = true
-  policy_json        = <<EOF
+  source_file = "../../environments/poc/lambda/python_demo/src/websocketui.py"
+  output_path = "websocketui.zip"
+  bucket_name = "tom.niu26"
+  bucket_key = "websocketui.zip"
+
+  policy_jsons        = [<<EOF
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -40,6 +44,29 @@ inputs = {
     ]
 }
 EOF
+,
+<<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "logs:PutLogEvents",
+                "logs:CreateLogStream",
+                "logs:CreateLogGroup"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:logs:ap-southeast-2:204532658794:log-group:/aws/lambda/emily-ws-python-message:*:*",
+                "arn:aws:logs:ap-southeast-2:204532658794:log-group:/aws/lambda/emily-ws-python-message:*"
+            ],
+            "Sid": ""
+        }
+    ]
+}
+EOF
+]
+  number_of_policy_jsons = 2
 
   tags = {
     "Managed By" = "Terragrunt"
